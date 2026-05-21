@@ -53,13 +53,11 @@ df["Hours_Studied"] = pandas.to_numeric(df["Hours_Studied"], errors="coerce")
 
 # study_hard = df[df["Hours_Studied"] > 30]
 # study_less = df[df["Hours_Studied"] < 30]
-
-
 # print(study_hard["Exam_Score"].mean())
 # print(study_less["Exam_Score"].mean())
 
 
-high_exam = df[df["Exam_Score"] > 90]
-print(high_exam["Hours_Studied"].mean())
-low_exam = df[(df["Exam_Score"] < 70) & (df["Exam_Score"] > 60)]
-print(low_exam["Hours_Studied"].mean())
+# high_exam = df[df["Exam_Score"] > 90]
+# print(high_exam["Hours_Studied"].mean())
+# low_exam = df[(df["Exam_Score"] < 70) & (df["Exam_Score"] > 60)]
+# print(low_exam["Hours_Studied"].mean())
