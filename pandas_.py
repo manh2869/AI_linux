@@ -1,4 +1,5 @@
 import pandas
+import matplotlib.pyplot as plt
 import os
 
 os.system("clear")
@@ -27,12 +28,11 @@ pandas.set_option("display.max_rows", None)
 pandas.set_option("display.width", 1000)
 
 
-collum_names = """Hours_Studied,Attendance,Parental_Involvement,Access_to_Resources,Extracurricular_Activities,Sleep_Hours,Previous_Scores,Motivation_Level,Internet_Access,Tutoring_Sessions,Family_Income,Teacher_Quality,School_Type,Peer_Influence,Physical_Activity,Learning_Disabilities,Parental_Education_Level,Distance_from_Home,Gender,Exam_Score""".split(
-    ","
-)
-collum_used = [
+# column_names = """Hours_Studied,Attendance,Parental_Involvement,Access_to_Resources,Extracurricular_Activities,Sleep_Hours,Previous_Scores,Motivation_Level,Internet_Access,Tutoring_Sessions,Family_Income,Teacher_Quality,School_Type,Peer_Influence,Physical_Activity,Learning_Disabilities,Parental_Education_Level,Distance_from_Home,Gender,Exam_Score""".split(
+#     ","
+# )
+column_used = [
     "Hours_Studied",
-    "Attendance",
     "Sleep_Hours",
     "Previous_Scores",
     "Access_to_Resources",
@@ -41,10 +41,20 @@ collum_used = [
 
 
 df = pandas.read_csv(
-    "/home/woong/study/AI_linux/student.csv", names=collum_names, usecols=collum_used
+    "/home/woong/study/AI_linux/student.csv",
+    names=column_used,
 )
 df["Exam_Score"] = pandas.to_numeric(df["Exam_Score"], errors="coerce")
 df["Hours_Studied"] = pandas.to_numeric(df["Hours_Studied"], errors="coerce")
+df["Sleep_Hours"] = pandas.to_numeric(df["Sleep_Hours"], errors="coerce")
+
+df_small = df.sample(100)
+
+print(df_small)
+print(df_small.info())
+
+plt.scatter(df_small["Sleep_Hours"], df_small["Exam_Score"])
+plt.show()
 
 # score=df.sort_values(by='Exam_Score',ascending=False)
 
