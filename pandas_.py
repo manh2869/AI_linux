@@ -1,4 +1,5 @@
 import pandas
+import numpy as np
 import matplotlib.pyplot as plt
 import os
 
@@ -34,32 +35,52 @@ pandas.set_option("display.width", 1000)
 column_used = [
     "Hours_Studied",
     "Sleep_Hours",
-    "Previous_Scores",
-    "Access_to_Resources",
     "Exam_Score",
 ]
 
 
 df = pandas.read_csv(
     "/home/woong/study/AI_linux/student.csv",
-    names=column_used,
+    usecols=column_used,
 )
+
+
 df["Exam_Score"] = pandas.to_numeric(df["Exam_Score"], errors="coerce")
 df["Hours_Studied"] = pandas.to_numeric(df["Hours_Studied"], errors="coerce")
 df["Sleep_Hours"] = pandas.to_numeric(df["Sleep_Hours"], errors="coerce")
 
-df_small = df.sample(100)
+df_small = df.sample(100, random_state=28)
+df_sorted = df_small.sort_values(by="Exam_Score", ascending=False)
 
-print(df_small)
-print(df_small.info())
 
-plt.scatter(df_small["Sleep_Hours"], df_small["Exam_Score"])
+x = df_sorted["Sleep_Hours"]
+x1 = df_sorted["Hours_Studied"]
+
+y = df_sorted["Exam_Score"]
+
+m, b = np.polyfit(x, y, 1)
+m1, b1 = np.polyfit(x1, y, 1)
+
+# print(df_sorted.info())
+# print(df_sorted.describe())
+
+fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(nrows=2, ncols=2, figsize=(12, 10))
+
+ax1.scatter(df_sorted["Sleep_Hours"], df_sorted["Exam_Score"])
+ax1.plot(x, m * x + b, color="red", linewidth=2)
+ax1.grid(True, linestyle="--", alpha=0.6    )
+
+
+ax2.scatter(df_sorted["Hours_Studied"], df_sorted["Exam_Score"])
+ax2.plot(x1, m1 * x1 + b1, color="red", linewidth=2)
+ax2.grid(True, linestyle="--", alpha=0.6)
+
+
 plt.show()
 
 # score=df.sort_values(by='Exam_Score',ascending=False)
 
 # print(score)
-# print(df.describe())
 
 # study_hard = df[df["Hours_Studied"] > 30]
 # study_less = df[df["Hours_Studied"] < 30]
