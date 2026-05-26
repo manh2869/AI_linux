@@ -48,7 +48,11 @@ mean_score = df["Exam_Score"].mean()
 # loc str
 distan_from_home = ["Near"]
 df_loc = df[df["Distance_from_Home"].isin(distan_from_home)]
-print(df_loc)
+# print(df_loc)
+
+
+
+
 
 print(df.isnull().sum())  # is  null  ?
 
