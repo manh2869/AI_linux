@@ -25,8 +25,8 @@
 5030,13,97,Medium,Medium,Yes,8,81,Medium,Yes,3,Low,Medium,Public,Neutral,1,No,High School,Far,Male,68
 5710,21,88,Low,Medium,No,4,80,Low,Yes,1,Medium,Medium,Public,Positive,2,Yes,Postgraduate,Near,Male,67
 5909,15,88,Low,Medium,Yes,4,67,Medium,Yes,1,Medium,High,Private,Positive,4,No,High School,Far,Female,66
-920,26,71,High,Low,Yes,4,83,Low,Yes,1,Medium,Medium,Public,Negative,3,No,College,Moderate,Male,66
-3376,18,70,High,Low,No,6,79,Medium,Yes,1,Medium,High,Public,Positive,2,No,College,Near,Female,65
+920,NaN,71,High,Low,Yes,4,83,Low,Yes,1,Medium,Medium,Public,Negative,3,No,College,Moderate,Male,66
+3376,NaN,70,High,Low,No,6,79,Medium,Yes,1,Medium,High,Public,Positive,2,No,College,Near,Female,65
 1511,19,75,Medium,High,Yes,8,83,High,Yes,2,High,Medium,Public,Neutral,2,No,High School,Near,Male,68
 6365,31,91,Medium,High,Yes,7,94,High,Yes,2,High,High,Public,Negative,3,No,High School,Far,Male,75
 506,16,73,High,Medium,Yes,8,52,Medium,Yes,2,Medium,High,Public,Positive,4,No,College,Near,Female,66
@@ -66,7 +66,7 @@
 1227,19,98,Medium,Medium,Yes,8,87,Medium,Yes,0,Medium,Medium,Private,Negative,6,No,High School,Near,Male,70
 2702,32,62,High,Medium,No,7,86,Low,Yes,0,Low,Medium,Public,Positive,2,No,High School,Near,Female,67
 3218,16,61,Medium,High,No,6,92,High,Yes,4,High,High,Public,Neutral,3,No,High School,Near,Male,66
-3007,11,88,Medium,Low,Yes,7,73,Low,Yes,1,Medium,Low,Private,Neutral,3,Yes,College,Near,Female,63
+3007,11,88,Medium,Low,Yes,7,73,Low,Yes,1,Medium,Low,Private,Neutral,3,Yes,College,Near,Female,NaN
 4167,19,85,Medium,High,Yes,9,74,Medium,Yes,1,High,Medium,Public,Neutral,3,No,College,Moderate,Female,69
 2981,28,70,Medium,Medium,Yes,9,87,Low,Yes,0,Low,Medium,Public,Neutral,3,No,High School,Moderate,Male,66
 675,15,79,High,Medium,No,8,62,Low,Yes,1,Low,Low,Public,Positive,3,No,College,Near,Male,65
