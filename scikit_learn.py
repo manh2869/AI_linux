@@ -25,68 +25,65 @@ df["Exam_Score"] = df["Exam_Score"].fillna(mean_score)
 x = df.iloc[:, :-1].values
 y = df.iloc[:, -1].values
 
-imputer = SimpleImputer(missing_values=np.nan, strategy="mean")  # set up strategy
-imputer.fit(x[:, 0:1])  # calulator data
-x[:, 0:1] = imputer.transform(x[:, 0:1])  #   find NaN and replace
 
-
-le = LabelEncoder()
-x[:, 4] = le.fit_transform(x[:, 4])
-# print(gender.classes_)  check male = 0  ?   1
+# new_student = [22.0, 88, 10, 72, "Fmale"]
+# new_df = pd.DataFrame(new_student)
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=1)
 
-# fig, ax1 = plt.subplots(figsize=(10, 10))
-# ax1.scatter(df.iloc[:, 0:1], df.iloc[:, -1])
-# ax1.grid()
-# plt.show()
+
+imputer = SimpleImputer(missing_values=np.nan, strategy="mean")  # set up strategy
+imputer.fit(x_train[:, 0:1])  # calulator data
+x_train[:, 0:1] = imputer.transform(x_train[:, 0:1])  #   find NaN and replace
+x_test[:, 0:1] = imputer.transform(x_test[:, 0:1])  #   find NaN and replace
 
 
-print(x_train[0:5, :])
-# print(y_train)
-# print(x_test)
-# print(y_test)
+le = LabelEncoder()
+x_train[:, 4] = le.fit_transform(x_train[:, 4])
+x_test[:, 4] = le.fit_transform(x_test[:, 4])
 
-sc = StandardScaler()
+
+# print(gender.classes_)  check male = 0  ?   1
+
+
+# print(x_train[0:5, :])
+# # print(y_train)
+# # print(x_test)
+# # print(y_test)
+
+sc = StandardScaler()  #   object  sc include mean,deviation...
+
+#       use sc  for caculater   mean,deviation,variance
+#       ex   print(sc.mean_)
+
+# sc.fit(x_train)   and   x_train=sc.transform(x_train)   =  sc.fit_transform()
+
 
 x_train[:, 0:4] = sc.fit_transform(x_train[:, 0:4])
 
-# x_test[:, 0:5] = sc.fit_transform(x_test[:, 0:5])
+x_test[:, 0:4] = sc.transform(x_test[:, 0:4])
 
 
-# y_train =sc.fit_transform(y_train)
-print(x_train[0:5, :])
-
-# print(x_test)
-print("deviation   ", sc.scale_)  # [deviation,...,...,]
-print("mean  ", sc.mean_)  # [mean.,...,...,...,]
-
-# print(df.isnull().sum())
 model = LinearRegression()
 model.fit(x_train, y_train)
 
-print(model)
-# 4. Dự đoán và Đánh giá (Evaluation)
-# y_pred = model.predict(x_test)
 
-# mse = mean_squared_error(y_test, y_pred)
-# r2 = r2_score(y_test, y_pred)
-# print(f"--- KẾT QUẢ MÔ HÌNH ---")
-# print(f"Mean Squared Error: {mse:.2f}")
-# print(f"R-squared (Độ chính xác): {r2:.2f}")
-# plt.figure(figsize=(8, 6))
-# plt.scatter(y_test, y_pred, color='blue', alpha=0.6)
-# plt.plot([y_test.min(), y_test.max()], [y_test.min(),
-#     y_test.max()], 'r--', lw=2)
-# plt.xlabel("Điểm Thực Tế")
-# plt.ylabel("Điểm Dự Đoán")
-# plt.title("So Sánh: Thực Tế vs Dự Đoán (Scikit-learn)")
-# plt.grid(True)
-# plt.show()
+y_predict = model.predict()
 
-# # 6. Thử dự đoán cho chính bạn!
-# # Giả sử: Học 20h, Chuyên cần 90%, Ngủ 7h, Điểm kì trước 85, Giới
-#     # tính 1 (Male)
-# my_data = sc.transform([[20, 90, 7, 85, 1]])
-# predicted_score = model.predict(my_data)
-# print(f"\nNếu bạn học 20h và có các chỉ số trên, dự đoán điểm là:{predicted_score[0]:.2f}")
+
+# print(model.coef_)  # he so cua line Regression
+# print(model.intercept_)  # he so tu do  bias -  intercept
+
+# print("x test", x_test[0:5, :])
+
+print("y_predict    ", y_predict)
+
+
+# mse = mean_squared_error(y_test, y_predict)
+# r2 = r2_score(y_test, y_predict)
+#   ???
+# print(mse)
+# print(r2)
+
+# print("deviation   ", sc.scale_)  # [deviation,...,...,]
+# print("mean  ", sc.mean_)  # [mean.,...,...,...,]
